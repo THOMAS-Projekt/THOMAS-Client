@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 -- JOYSTICK-CONTROL-KLASSE :: IMPLEMENTIERUNG --
 */
 
@@ -28,7 +28,7 @@ JoystickControl::JoystickControl()
 	_joystickAxisCount = _joystick->GetAxisCount();
 	_joystickButtonCount = _joystick->GetButtonCount();
 	
-	// Sendepuffer-Länge berechnen
+	// Sendepuffer-LÃ¤nge berechnen
 	_joystickDataSendBuffLength = 1 + sizeof(short) * _joystickAxisCount + _joystickButtonCount;
 	
 	// Server-Verbindungs-Objekt erstellen
@@ -41,27 +41,27 @@ JoystickControl::~JoystickControl()
 	if(_running)
 		Stop();
 	
-	// Joystick-Verbindung löschen
+	// Joystick-Verbindung lÃ¶schen
 	delete _joystick;
 	
-	// Server-Verbindung löschen
+	// Server-Verbindung lÃ¶schen
 	delete _serverCon;
 }
 
 void JoystickControl::Run()
 {
-	// Läuft die Steuerung bereits?
+	// LÃ¤uft die Steuerung bereits?
 	if(_running)
-		throw THOMASException("Fehler: Die Steuerung läuft bereits!");
+		throw THOMASException("Fehler: Die Steuerung lÃ¤uft bereits!");
 	
 	// Mit Server verbinden
 	_serverCon->Connect("localhost", 4242);
 	
-	// Joystick-Daten an Server übermitteln (JOYSTICK_HEADER)
+	// Joystick-Daten an Server Ã¼bermitteln (JOYSTICK_HEADER)
 	BYTE sendBuff[3] = {1, _joystickAxisCount, _joystickButtonCount};
 	_serverCon->Send(sendBuff, 3);
 	
-	// Steuerung läuft
+	// Steuerung lÃ¤uft
 	_running = true;
 	
 	// Joystick-Empfangsmodus starten
@@ -70,11 +70,11 @@ void JoystickControl::Run()
 
 void JoystickControl::Stop()
 {
-	// Läuft die Steuerung?
+	// LÃ¤uft die Steuerung?
 	if(!_running)
-		throw THOMASException("Fehler: Die Steuerung läuft nicht!");
+		throw THOMASException("Fehler: Die Steuerung lÃ¤uft nicht!");
 	
-	// Steuerung läuft nicht mehr
+	// Steuerung lÃ¤uft nicht mehr
 	_running = false;
 	
 	// Joystick-Empfangsmodus beenden
@@ -101,6 +101,6 @@ void JoystickControl::ComputeJoystickData(short *axis, BYTE *buttons)
 	// Daten an Server senden
 	_serverCon->Send(buff, _joystickDataSendBuffLength);
 	
-	// Puffer löschen (TODO: Entsteht hier evtl. ein Speicherleck? Oder hat die Pointer-Inkrementierung keine Auswirkung auf delete?)
+	// Puffer lÃ¶schen (TODO: Entsteht hier evtl. ein Speicherleck? Oder hat die Pointer-Inkrementierung keine Auswirkung auf delete?)
 	delete buff;
 }

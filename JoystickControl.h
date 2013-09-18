@@ -1,7 +1,7 @@
-/*
+Ôªø/*
 -- JOYSTICK-CONTROL-KLASSE :: HEADER --
 Definiert die JoystickControl-Klasse.
-Diese Klasse empf‰ngt die Steuerdaten des Joysticks und leitet diese dann an den Server weiter.
+Diese Klasse empf√§ngt die Steuerdaten des Joysticks und leitet diese dann an den Server weiter.
 */
 
 
@@ -35,7 +35,7 @@ namespace THOMAS
 		// Die Verbindung zum Joystick.
 		Joystick *_joystick;
 		
-		// Die L‰nge des JOYSTICK_DATA-Sendepuffers.
+		// Die L√§nge des JOYSTICK_DATA-Sendepuffers.
 		int _joystickDataSendBuffLength;
 		
 		// Verarbeitet die empfangenen Joystick-Daten.
@@ -44,11 +44,11 @@ namespace THOMAS
 		// -> buttons: Die empfangenen Joystick-Buttonwerte.
 		void ComputeJoystickData(short *axis, BYTE *buttons);
 		
-		// Wrapper, um die ComputeJoystickData-Memberfunktion sauber an einen separaten Thread zu ¸bergeben.
+		// Wrapper, um die ComputeJoystickData-Memberfunktion sauber an einen separaten Thread zu √ºbergeben.
 		// Parameter:
 		// -> axis: Die empfangenen Joystick-Achsenwerte.
 		// -> buttons: Die empfangenen Joystick-Buttonwerte.
-		// -> obj: Das zur ComputeJoystickData-Funktion gehˆrende JoystickControl-Objekt.
+		// -> obj: Das zur ComputeJoystickData-Funktion geh√∂rende JoystickControl-Objekt.
 		static void ComputeJoystickDataWrapper(short *axis, BYTE *buttons, void *obj)
 		{
 			(reinterpret_cast<JoystickControl *>(obj))->ComputeJoystickData(axis, buttons);
