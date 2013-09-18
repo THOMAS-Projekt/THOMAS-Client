@@ -31,7 +31,7 @@ namespace THOMAS
 	
 	private:
 		// Konstante, definiert die Verzögerung (in us), die mindestens zwischen zwei erkannten Joystick-Ereignissen liegen muss.
-		const int _joystickReadDelay = 50000;
+		const int _joystickReadDelay = 10000;
 		
 		// Das interne Joystick-Handle.
 		int _js;

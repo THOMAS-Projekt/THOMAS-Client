@@ -84,9 +84,6 @@ void TCPClient::Connect(std::string serverAddress, unsigned short port)
 	
 	// Verbindung steht
 	_connected = true;
-	
-	// Serverdaten-Variable löschen
-	delete serverData;
 }
 
 void TCPClient::Disconnect()

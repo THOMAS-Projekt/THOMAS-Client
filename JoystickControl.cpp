@@ -87,20 +87,15 @@ void JoystickControl::Stop()
 void JoystickControl::ComputeJoystickData(short *axis, BYTE *buttons)
 {
 	// Sende-Puffer erstellen
-	BYTE *buff = new BYTE[_joystickDataSendBuffLength];
+	BYTE buff[_joystickDataSendBuffLength];
 	
 	// Kommandobyte (JOYSTICK_DATA)
 	buff[0] = 2;
-	buff++;
 	
 	// Joystick-Daten in Puffer kopieren
-	memcpy(buff, axis, sizeof(short) * _joystickAxisCount);
-	buff += sizeof(short) * _joystickAxisCount;
-	memcpy(buff, buttons, _joystickButtonCount);
+	memcpy(&buff[1], axis, sizeof(short) * _joystickAxisCount);
+	memcpy(&buff[1 + sizeof(short) * _joystickAxisCount], buttons, _joystickButtonCount);
 	
 	// Daten an Server senden
 	_serverCon->Send(buff, _joystickDataSendBuffLength);
-	
-	// Puffer löschen (TODO: Entsteht hier evtl. ein Speicherleck? Oder hat die Pointer-Inkrementierung keine Auswirkung auf delete?)
-	delete buff;
 }

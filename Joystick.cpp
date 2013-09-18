@@ -41,7 +41,7 @@ Joystick::Joystick(ComputeReceivedDataFunction computeReceivedDataFunction, void
 	_cRDFParams = cRDFParams;
 	
 	// Verbindung zum Joystick herstellen
-	_js = open("/dev/input/js0", O_RDONLY | O_NDELAY);
+	_js = open("/dev/input/js0", O_RDONLY);
 	
 	// Wurde die Verbindung erfolgreich hergestellt?
 	if(_js == -1)
