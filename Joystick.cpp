@@ -65,13 +65,13 @@ Joystick::~Joystick()
 	close(_js);
 }
 
-int Joystick::GetAxisCount()
+BYTE Joystick::GetAxisCount()
 {
 	// Anzahl der Achsen zurückgeben
 	return static_cast<BYTE>(_joystickAxisCount);
 }
 
-int Joystick::GetButtonCount()
+BYTE Joystick::GetButtonCount()
 {
 	// Anzahl der Buttons zurückgeben
 	return static_cast<BYTE>(_joystickButtonCount);
