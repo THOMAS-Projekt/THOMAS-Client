@@ -68,13 +68,13 @@ Joystick::~Joystick()
 int Joystick::GetAxisCount()
 {
 	// Anzahl der Achsen zurückgeben
-	return _joystickAxisCount;
+	return static_cast<BYTE>(_joystickAxisCount);
 }
 
 int Joystick::GetButtonCount()
 {
 	// Anzahl der Buttons zurückgeben
-	return _joystickButtonCount;
+	return static_cast<BYTE>(_joystickButtonCount);
 }
 
 void Joystick::BeginReceive()

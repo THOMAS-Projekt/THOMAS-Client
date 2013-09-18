@@ -1,8 +1,8 @@
 CPPARGS= -std=c++11 -pthread
 LINKERARGS= -pthread
 
-all: main.o THOMASException.o TCPClient.o Joystick.o
-	g++ THOMASException.o TCPClient.o Joystick.o main.o -o thomas-client $(LINKERARGS)
+all: main.o THOMASException.o TCPClient.o Joystick.o JoystickControl.o
+	g++ THOMASException.o TCPClient.o Joystick.o JoystickControl.o main.o -o thomas-client $(LINKERARGS)
 
 test: test.o THOMASException.o  TCPClient.o
 	g++ THOMASException.o TCPClient.o test.o -o test $(LINKERARGS)
@@ -18,6 +18,9 @@ TCPClient.o: TCPClient.cpp TCPClient.h
 
 Joystick.o: Joystick.cpp Joystick.h
 	g++ -c Joystick.cpp $(CPPARGS)
+
+JoystickControl.o: JoystickControl.cpp JoystickControl.h
+	g++ -c JoystickControl.cpp $(CPPARGS)
 
 THOMASException.o: THOMASException.cpp THOMASException.h
 	g++ -c THOMASException.cpp $(CPPARGS)

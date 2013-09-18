@@ -90,9 +90,9 @@ namespace THOMAS
 		void EndReceive();
 		
 		// Gibt die Anzahl der Achsen des verbundenen Joysticks zurück.
-		int GetAxisCount();
+		BYTE GetAxisCount();
 		
 		// Gibt die Anzahl der Buttons des verbundenen Joysticks zurück.
-		int GetButtonCount();
+		BYTE GetButtonCount();
 	};
 }
