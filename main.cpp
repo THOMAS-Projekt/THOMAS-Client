@@ -13,15 +13,24 @@ using namespace THOMAS;
 // Die sleep()-Funktion wird benötigt.
 #include <unistd.h>
 
-
 /* FUNKTIONEN */
 
 // Programm-Einstiegsfunktion.
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
+
+	// Argumente prüfen. 1 = IP
+	if(argc < 2)
+	{
+
+		printf("Es fehlen Parameter <IP>\n");
+		return 0;
+
+	}
+
 	// Joystick-Steuerungs-Objekt erzeugen
 	JoystickControl *_jsC = new JoystickControl();
-	_jsC->Run();
+	_jsC->Run(argv[1]);
 	
 	// Programm laufen lassen, Prozessor nicht unnötig belasten (alles läuft in separaten Threads)
 	// TODO: Programm-Befehle per Tastatur etc.

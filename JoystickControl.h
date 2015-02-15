@@ -53,7 +53,8 @@ namespace THOMAS
 		{
 			(reinterpret_cast<JoystickControl *>(obj))->ComputeJoystickData(axis, buttons);
 		}
-		
+
+
 	public:
 		// Konstruktor.
 		// Erstellt eine neue JoystickControl-Instanz.
@@ -64,7 +65,7 @@ namespace THOMAS
 		~JoystickControl();
 		
 		// Startet die Joystick-Steuerung.
-		void Run();
+		void Run(const char* ip);
 		
 		// Beendet die Joystick-Steuerung.
 		void Stop();

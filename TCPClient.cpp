@@ -66,7 +66,7 @@ void TCPClient::Connect(std::string serverAddress, unsigned short port)
 	
 	// Konnten die Serverdaten ermittelt werden?
 	if(serverData == NULL)
-		throw THOMASException("Fehler: Der angegebene Server wurde nicht gefunden!");
+		throw THOMASException("Fehler: Der Server mit der IP " + serverAddress + " wurde nicht gefunden!");
 	
 	// Server-Adressstruktur erstellen
 	sockaddr_in serverAdd;
@@ -79,7 +79,7 @@ void TCPClient::Connect(std::string serverAddress, unsigned short port)
 	if(connect(_socket, reinterpret_cast<sockaddr *>(&serverAdd), sizeof(serverAdd)) == -1)
 	{
 		// Fehler, Exception auslösen
-		throw THOMASException("Fehler: Die Verbindung mit dem Server konnte nicht hergestellt werden!");
+		throw THOMASException("Fehler: Die Verbindung mit dem Server (" + serverAddress + ") konnte nicht hergestellt werden!");
 	}
 	
 	// Verbindung steht

@@ -16,11 +16,14 @@ using namespace THOMAS;
 // Hier ist u.a. die memcpy()-Funktion definiert.
 #include <cstring>
 
+#include <iostream>
 
 /* FUNKTIONEN */
 
 JoystickControl::JoystickControl()
 {
+	
+
 	// Verbindung zum Joystick herstellen
 	_joystick = new Joystick(&JoystickControl::ComputeJoystickDataWrapper, static_cast<void *>(this));
 	
@@ -48,14 +51,14 @@ JoystickControl::~JoystickControl()
 	delete _serverCon;
 }
 
-void JoystickControl::Run()
+void JoystickControl::Run(const char* ip)
 {
 	// Läuft die Steuerung bereits?
 	if(_running)
 		throw THOMASException("Fehler: Die Steuerung läuft bereits!");
 	
 	// Mit Server verbinden
-	_serverCon->Connect("localhost", 4242);
+	_serverCon->Connect(ip, 4242);
 	
 	// Joystick-Daten an Server übermitteln (JOYSTICK_HEADER)
 	BYTE sendBuff[3] = {1, _joystickAxisCount, _joystickButtonCount};
