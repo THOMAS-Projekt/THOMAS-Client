@@ -54,6 +54,7 @@ namespace THOMAS
 			(reinterpret_cast<JoystickControl *>(obj))->ComputeJoystickData(axis, buttons);
 		}
 
+
 	public:
 		// Konstruktor.
 		// Erstellt eine neue JoystickControl-Instanz.

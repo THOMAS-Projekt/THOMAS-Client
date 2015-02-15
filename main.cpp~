@@ -22,9 +22,10 @@ int main(int argc, char** argv)
 	// Argumente prüfen. 1 = IP
 	if(argc < 2)
 	{
-		// Fehlermeldung ausgeben
+
 		printf("Es fehlen Parameter <IP>\n");
 		return 0;
+
 	}
 
 	// Joystick-Steuerungs-Objekt erzeugen

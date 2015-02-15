@@ -16,10 +16,14 @@ using namespace THOMAS;
 // Hier ist u.a. die memcpy()-Funktion definiert.
 #include <cstring>
 
+#include <iostream>
+
 /* FUNKTIONEN */
 
 JoystickControl::JoystickControl()
 {
+	
+
 	// Verbindung zum Joystick herstellen
 	_joystick = new Joystick(&JoystickControl::ComputeJoystickDataWrapper, static_cast<void *>(this));
 	
