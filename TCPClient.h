@@ -27,28 +27,28 @@ namespace THOMAS
 	private:
 		// Das Socket-Handle.
 		int _socket;
-		
+
 		// Gibt an, ob eine Verbindung besteht.
 		bool _connected = false;
-		
+
 	public:
 		// Konstruktor.
 		// Erstellt eine neue TCPClient-Instanz.
 		TCPClient();
-		
+
 		// Destruktor.
 		// Trennt die Client-Server-Verbindung und gibt noch allokierten Speicher frei.
 		~TCPClient();
-		
+
 		// Stellt die Verbindung mit dem angegebenen Server her.
 		// Parameter:
 		// -> serverAddress: Die Adresse des Servers, mit dem verbunden werden soll.
 		// -> serverPort: Der Port des Servers, mit dem verbunden werden soll.
 		void Connect(std::string serverAddress, unsigned short port);
-		
+
 		// Trennt die Verbindung mit dem Server.
 		void Disconnect();
-		
+
 		// Sendet die angegebenen Daten an den Server.
 		// Parameter:
 		// -> data: Die zu sendenden Daten.

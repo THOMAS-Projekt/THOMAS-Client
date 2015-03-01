@@ -22,28 +22,28 @@ namespace THOMAS
 	private:
 		// Gibt an, ob die Joystick-Steuerung aktiv ist.
 		bool _running = false;
-		
+
 		// Die Anzahl der Joystick-Achsen.
 		BYTE _joystickAxisCount;
-		
+
 		// Die Anzahl der Joystick-Buttons.
 		BYTE _joystickButtonCount;
-		
+
 		// Die Verbindung zum Server.
 		TCPClient *_serverCon;
-		
+
 		// Die Verbindung zum Joystick.
 		Joystick *_joystick;
-		
+
 		// Die Länge des JOYSTICK_DATA-Sendepuffers.
 		int _joystickDataSendBuffLength;
-		
+
 		// Verarbeitet die empfangenen Joystick-Daten.
 		// Parameter:
 		// -> axis: Die empfangenen Joystick-Achsenwerte.
 		// -> buttons: Die empfangenen Joystick-Buttonwerte.
 		void ComputeJoystickData(short *axis, BYTE *buttons);
-		
+
 		// Wrapper, um die ComputeJoystickData-Memberfunktion sauber an einen separaten Thread zu übergeben.
 		// Parameter:
 		// -> axis: Die empfangenen Joystick-Achsenwerte.
@@ -58,14 +58,14 @@ namespace THOMAS
 		// Konstruktor.
 		// Erstellt eine neue JoystickControl-Instanz.
 		JoystickControl();
-		
+
 		// Destruktor.
 		// Beendet alle noch bestehenden Verbindungen und gibt Speicher frei.
 		~JoystickControl();
-		
+
 		// Startet die Joystick-Steuerung.
 		void Run(const char* ip);
-		
+
 		// Beendet die Joystick-Steuerung.
 		void Stop();
 	};

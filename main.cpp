@@ -18,7 +18,6 @@ using namespace THOMAS;
 // Programm-Einstiegsfunktion.
 int main(int argc, char** argv)
 {
-
 	// Argumente prüfen. 1 = IP
 	if(argc < 2)
 	{
@@ -30,12 +29,12 @@ int main(int argc, char** argv)
 	// Joystick-Steuerungs-Objekt erzeugen
 	JoystickControl *_jsC = new JoystickControl();
 	_jsC->Run(argv[1]);
-	
+
 	// Programm laufen lassen, Prozessor nicht unnötig belasten (alles läuft in separaten Threads)
 	// TODO: Programm-Befehle per Tastatur etc.
 	while(true)
 		sleep(2);
-	
+
 	// Programm erfolgreich beendet
 	return 0;
 }
