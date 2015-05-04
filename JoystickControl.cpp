@@ -20,8 +20,6 @@ using namespace THOMAS;
 
 JoystickControl::JoystickControl()
 {
-
-
 	// Verbindung zum Joystick herstellen
 	_joystick = new Joystick(&JoystickControl::ComputeJoystickDataWrapper, static_cast<void *>(this));
 
