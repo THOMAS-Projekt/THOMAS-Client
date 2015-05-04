@@ -20,6 +20,8 @@ using namespace THOMAS;
 
 JoystickControl::JoystickControl()
 {
+
+
 	// Verbindung zum Joystick herstellen
 	_joystick = new Joystick(&JoystickControl::ComputeJoystickDataWrapper, static_cast<void *>(this));
 
@@ -57,8 +59,8 @@ void JoystickControl::Run(const char* ip)
 	_serverCon->Connect(ip, 4242);
 
 	// Joystick-Daten an Server übermitteln (JOYSTICK_HEADER)
-	BYTE sendBuff[3] = {1, _joystickAxisCount, _joystickButtonCount};
-	_serverCon->Send(sendBuff, 3);
+	BYTE sendBuff[4] = {3, 1, _joystickAxisCount, _joystickButtonCount};
+	_serverCon->Send(sendBuff, 4);
 
 	// Steuerung läuft
 	_running = true;
@@ -89,11 +91,14 @@ void JoystickControl::ComputeJoystickData(short *axis, BYTE *buttons)
 	BYTE buff[_joystickDataSendBuffLength];
 
 	// Kommandobyte (JOYSTICK_DATA)
-	buff[0] = 2;
+	buff[1] = 2;
 
 	// Joystick-Daten in Puffer kopieren
-	memcpy(&buff[1], axis, sizeof(short) * _joystickAxisCount);
-	memcpy(&buff[1 + sizeof(short) * _joystickAxisCount], buttons, _joystickButtonCount);
+	memcpy(&buff[2], axis, sizeof(short) * _joystickAxisCount);
+	memcpy(&buff[3 + sizeof(short) * _joystickAxisCount], buttons, _joystickButtonCount);
+
+	// Packetlänge ermitteln
+	buff[0] = (sizeof(buff)/sizeof(*buff));
 
 	// Daten an Server senden
 	_serverCon->Send(buff, _joystickDataSendBuffLength);
