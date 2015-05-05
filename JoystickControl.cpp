@@ -85,19 +85,22 @@ void JoystickControl::Stop()
 
 void JoystickControl::ComputeJoystickData(short *axis, BYTE *buttons)
 {
+	// Paketlänge ermitteln
+	int dataLength = 1 + _joystickDataSendBuffLength;
+
 	// Sende-Puffer erstellen
-	BYTE buff[_joystickDataSendBuffLength];
+	BYTE buff[dataLength];
+
+	// Paketheader (Größe des Datenpaketes)
+	buff[0] = _joystickDataSendBuffLength;
 
 	// Kommandobyte (JOYSTICK_DATA)
 	buff[1] = 2;
 
 	// Joystick-Daten in Puffer kopieren
 	memcpy(&buff[2], axis, sizeof(short) * _joystickAxisCount);
-	memcpy(&buff[3 + sizeof(short) * _joystickAxisCount], buttons, _joystickButtonCount);
-
-	// Packetlänge ermitteln
-	buff[0] = (sizeof(buff)/sizeof(*buff));
+	memcpy(&buff[2 + sizeof(short) * _joystickAxisCount], buttons, _joystickButtonCount);
 
 	// Daten an Server senden
-	_serverCon->Send(buff, _joystickDataSendBuffLength);
+	_serverCon->Send(buff, dataLength);
 }
